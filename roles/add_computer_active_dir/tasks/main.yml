@@ -1,0 +1,8 @@
+---
+- name: Create AD computer object
+  community.windows.win_domain_computer:
+    name: "{{ vm_details.name }}"
+    domain_username: "{{ ad_username }}"
+    domain_password: "{{ ad_password }}"
+    domain_server: "{{ ad_domain }}"
+    state: present

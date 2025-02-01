@@ -1,0 +1,15 @@
+---
+- name: Generate token for ASP
+  uri:
+    url: "audi-url"
+    method: POST
+    body:
+      username: "{{ asp_username }}"
+      password: "{{ asp_password }}"
+    body_format: json
+    return_content: yes
+  register: token_response
+
+- name: Set token variable
+  set_fact:
+    asp_token: "{{ token_response.json.token }}"

@@ -1,0 +1,8 @@
+---
+- name: Create VM in Red Hat Satellite
+  redhat.satellite.host:
+    name: "{{ vm_details.name }}"
+    organization: "Default Organization"
+    location: "Default Location"
+    compute_resource: "{{ compute_resource }}"
+    state: present

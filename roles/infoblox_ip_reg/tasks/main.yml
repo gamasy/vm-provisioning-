@@ -1,0 +1,17 @@
+---
+- name: Reserve IP address in Infoblox
+  infoblox.nios_modules.nios_host_record:
+    name: "{{ vm_name }}"
+    ipv4addr: "{{ ip_address }}"
+    state: present
+    provider:
+      host: "infoblox-url"
+      username: "{{ infoblox_username }}"
+      password: "{{ infoblox_password }}"
+  register: infoblox_result
+
+- name: Set VM details
+  set_fact:
+    vm_details:
+      name: "{{ vm_name }}"
+      ip: "{{ infoblox_result.ipv4addr }}"

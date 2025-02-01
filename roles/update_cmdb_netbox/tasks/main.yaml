@@ -1,0 +1,18 @@
+---
+- name: Update  CMDB
+  uri:
+    url: "sharepoint-url"
+    method: POST
+    body:
+      vm_name: "{{ vm_details.name }}"
+      vm_ip: "{{ vm_details.ip }}"
+    body_format: json
+
+- name: Update Netbox
+  netbox.netbox.ipam:
+    netbox_url: "netbox-url"
+    netbox_token: "{{ netbox_token }}"
+    data:
+      name: "{{ vm_details.name }}"
+      ip_address: "{{ vm_details.ip }}"
+    state: present
